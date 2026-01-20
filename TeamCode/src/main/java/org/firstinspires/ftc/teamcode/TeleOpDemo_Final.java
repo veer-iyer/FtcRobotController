@@ -26,7 +26,7 @@ public class TeleOpDemo_Final extends OpMode {
 
     // Configuration constants - TWEAK THESE VALUES
     private final double SPEED_FACTOR = 0.8;      // Drive speed: 0.3 (slow) to 1.0 (fast)
-    private final double EJECTION_POWER = 0.825;   // Powered ejection
+    private final double EJECTION_POWER = 1.0;   // Powered ejection
     private final double NORMAL_EJECTION_POWER = 0.65; // Normal Ejection power
     private final double TRIGGER_THRESHOLD = 0.1; // Trigger sensitivity: 0.0 to 0.3
 
@@ -51,12 +51,15 @@ public class TeleOpDemo_Final extends OpMode {
 
         // Configure all motors to run without encoders (direct power control)
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        ejectionMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        ejectionMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
+        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         // Reverse left side motors so forward is forward
         frontLeft.setDirection(DcMotor.Direction.REVERSE);
         backLeft.setDirection(DcMotor.Direction.REVERSE);
